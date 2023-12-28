@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tabs opener</title>
+
+    <script>
+        window.addEventListener('load', function (event) {
+            if (window.location.href) {
+                const urlParamsString = window.location.href.split('?tabs=')[1];
+                if (urlParamsString) {
+                    let isFirstTab = true;
+
+                    const tabUrlStrings = urlParamsString.split('|');
+                    tabUrlStrings.forEach(function (url) {
+                        url = url.trim();
+                        if (url) {
+                            if (isFirstTab) {
+                                isFirstTab = false;
+                                window.location.href = url;
+                            } else {
+                                window.open(url);
+                            }
+                        } else {
+                            console.log('URL empty');
+                        }
+                    });
+                } else {
+                    console.log('Params none');
+                }
+            } else {
+                console.log('Href none');
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
